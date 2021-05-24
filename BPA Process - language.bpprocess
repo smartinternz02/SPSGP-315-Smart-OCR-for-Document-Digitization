@@ -1,0 +1,124 @@
+﻿<process name="language" version="1.0" bpversion="6.10.1.35171" narrative="" byrefcollection="true" preferredid="832b4aa6-3b30-4769-8146-014750079c43" published="true">
+  <view>
+    <camerax>-107</camerax>
+    <cameray>0</cameray>
+    <zoom version="2">1.25</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <stage stageid="ddb66e18-0fb8-4f3d-bc62-01eedbeee60f" name="Start" type="Start">
+    <display x="15" y="-105" />
+    <onsuccess>faef42c1-2773-45a1-9a02-7fb127528ee4</onsuccess>
+  </stage>
+  <stage stageid="6369fc74-537e-49e5-b94d-6ba341239a6b" name="End" type="End">
+    <display x="15" y="135" />
+  </stage>
+  <stage stageid="d201c3a7-8147-44ed-ad2d-8072fe729dce" name="Stage1" type="ProcessInfo">
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="faef42c1-2773-45a1-9a02-7fb127528ee4" name="IBM: Authentication::Authenticate" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-15" />
+    <inputs>
+      <input type="text" name="IBM Service Credential" friendlyname="IBM Service Credential" narrative="The name of the Custom credential" expr="&quot;IBM Watson Translation&quot;" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Response Content" friendlyname="Response Content" stage="Response Content" />
+      <output type="text" name="HTTP Status Code" friendlyname="HTTP Status Code" stage="HTTP Status Code" />
+      <output type="collection" name="Response Headers" friendlyname="Response Headers" stage="Response Headers" />
+      <output type="text" name="Access Token" friendlyname="Access Token" stage="Access Token" />
+    </outputs>
+    <onsuccess>dd348c8e-64dd-46cb-a12d-0de955a88c68</onsuccess>
+    <resource object="IBM: Authentication" action="Authenticate" />
+  </stage>
+  <stage stageid="b5890e95-ac45-40a5-bbef-7c7e44fc3d71" name="Response Content" type="Data">
+    <display x="-195" y="105" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="72f6d4ca-683c-4acd-be45-b7e8d76298a6" name="HTTP Status Code" type="Data">
+    <display x="-165" y="15" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="338e38c2-f502-44cc-82e1-30f4bc6d8fd5" name="Response Headers" type="Collection">
+    <display x="-165" y="-30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="0a940244-26bb-4a47-96ff-712de5f99529" name="Access Token" type="Data">
+    <display x="-180" y="60" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="dd348c8e-64dd-46cb-a12d-0de955a88c68" name="Skill1" type="Skill">
+    <loginhibit onsuccess="true" />
+    <display x="30" y="60" />
+    <inputs>
+      <input type="flag" name="Data Collection Opt Out" friendlyname="Data Collection Opt Out" expr="" />
+      <input type="text" name="Access Token" friendlyname="Access Token" narrative="The access token generated via the Authentication action" expr="[Access Token]" />
+      <input type="text" name="Gateway" friendlyname="Gateway" narrative="The country gateway code" expr="&quot;gateway&quot;" />
+      <input type="text" name="TextToTranslate" friendlyname="TextToTranslate" expr="&quot;Hello&quot;" />
+      <input type="text" name="ModelID" friendlyname="ModelID" expr="" />
+      <input type="text" name="SourceLanguage" friendlyname="SourceLanguage" expr="&quot;en&quot;" />
+      <input type="text" name="TargetLanguage" friendlyname="TargetLanguage" expr="&quot;fr&quot;" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Response Content" friendlyname="Response Content" stage="Response Content1" />
+      <output type="text" name="HTTP Status Code" friendlyname="HTTP Status Code" stage="HTTP Status Code1" />
+      <output type="collection" name="Response Headers" friendlyname="Response Headers" stage="Response Headers1" />
+      <output type="collection" name="Translations" friendlyname="Translations" stage="Translations" />
+      <output type="number" name="Word Count" friendlyname="Word Count" stage="Word Count" />
+      <output type="number" name="Character Count" friendlyname="Character Count" stage="Character Count" />
+    </outputs>
+    <onsuccess>6369fc74-537e-49e5-b94d-6ba341239a6b</onsuccess>
+    <skill id="e78a5746-b6e3-43a3-901c-060f63dfbcf2" action="Translate" />
+  </stage>
+  <stage stageid="107ab7c4-b0ed-47b6-b581-dd78587feafd" name="Response Content1" type="Data">
+    <display x="270" y="30" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="6c985ae5-098d-4832-817a-272edd519c07" name="HTTP Status Code1" type="Data">
+    <display x="135" y="105" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="f753770e-aca2-41fc-a37f-9c33a98d30d2" name="Response Headers1" type="Collection">
+    <display x="345" y="30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="2c771d47-5e03-4ae3-93e7-9f7d50efc69a" name="Translations" type="Collection">
+    <display x="270" y="75" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="94229800-6248-4a10-bcf6-3d4ce853e0ee" name="Word Count" type="Data">
+    <display x="270" y="-15" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="03c13cc8-7423-495d-82d1-9f479e7ce795" name="Character Count" type="Data">
+    <display x="420" y="30" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+</process>
